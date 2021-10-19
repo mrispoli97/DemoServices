@@ -1,0 +1,67 @@
+{
+  "exp": {
+    "name": "mobilenetV2 - sgd - batch size 32 - lr 0.1",
+    "data_dir": "data"
+  },
+  "data_generator": {
+    "name": "data_generator.DataGenerator",
+    "classes": [
+      "adware",
+      "benign",
+      "crypto_miner",
+      "downloader",
+      "dropper",
+      "file_infector",
+      "flooder",
+      "installer",
+      "packed",
+      "ransomware",
+      "spyware",
+      "worm"
+    ],
+    "batch_size": 32,
+    "shuffle": true,
+    "class_mode": "categorical",
+    "color_mode": "grayscale"
+  },
+  "model": {
+    "name": "models.MobilenetV2",
+    "optimizer": {
+      "name": "sgd",
+      "learning_rate": 0.1
+    },
+    "metrics": [
+      "categorical_accuracy",
+      "auc",
+      "f1_score"
+    ],
+    "num_classes": 12,
+    "activation": "softmax",
+    "loss": "categorical_crossentropy"
+  },
+  "trainer": {
+    "name": "trainer.ModelTrainer",
+    "num_epochs": 40,
+    "verbose_training": true,
+    "save": true
+  },
+  "callbacks": {
+    "model_checkpoint": {
+      "monitor": "val_loss",
+      "save_best_only": true,
+      "verbose": 1
+    },
+    "early_stopping": {
+      "monitor": "val_loss",
+      "patience": 10,
+      "verbose": 1
+    },
+    "reduce_lr_on_plateau": {
+      "monitor": "val_loss",
+      "patience": 3,
+      "factor": 0.5,
+      "verbose": 1
+    },
+    "csv_logger": "training.log"
+  }
+}

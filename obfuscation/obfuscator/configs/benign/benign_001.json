@@ -1,0 +1,6 @@
+{
+    "obfuscation": "benign",
+    "params": {
+        "severity": 0.01
+    }
+}

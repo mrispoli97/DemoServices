@@ -1,0 +1,7 @@
+{
+    "obfuscation": "benign",
+    "params": {
+        "severity": 2
+    },
+    "src": "C:\\Users\\mario\\PycharmProjects\\RobustnessAnalysis\\test\\src\\benign"
+}
