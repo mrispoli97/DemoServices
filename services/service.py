@@ -24,7 +24,6 @@ class ClassificationService(Service):
         model = self._data['model']
         filepath = self._data['filepath']
         prediction = action.classify(model=model, filepath=filepath)
-        print(f"Prediction: {prediction}")
         return prediction
 
 
@@ -63,10 +62,12 @@ class ChallengesManager:
                     cs = ClassificationService(request['data'])
                     prediction = cs.run()
                     self._table.set(request['id'], prediction)
+                    print(f"CLASSIFICATION: {prediction}")
                 elif job == 'obfuscation':
                     obs = ObfuscationService(request['data'])
                     ob_filepath = obs.run()
                     self._table.set(request['id'], ob_filepath)
+                    print(f"OBFUSCATION: {ob_filepath}")
 
 
 def main():
